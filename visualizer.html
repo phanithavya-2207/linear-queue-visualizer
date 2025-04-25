@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Linear Queue</title>
+    
+<style>
+    #animation {
+    margin-bottom: 20px;
+  }
+        #queue-container {
+            display: flex;
+            justify-content: center;
+
+        }
+        #operation {
+            justify-content: space-between;
+            padding: 10px 20px;
+            text-align: center;
+            margin-bottom: 100px;
+
+        }
+        .queue-item {
+            border: 1px solid white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            float:left;
+            background-color: pink;
+        }
+        .queue-front {
+            background-color: #4d84e2;
+        }
+        .queue-rear {
+            background-color: white;
+        }
+    </style>
+</head>
+<body style="background-color: black">
+   
+    <center><h2 style="color: white;font-size:xx-large;"><i>Linear Queue</i></h2><br></center>
+    <section id="operation">
+        <button style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: #4d84e2;color:black;border:1px solid white">Front pointer</button>
+        &nbsp;&nbsp;&nbsp;<button style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: pink;color:black;border:1px solid white">Inserted elements</button>
+        &nbsp;&nbsp;&nbsp;<button style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: white;color:black;border:1px solid white">Rear pointer</button>
+        
+    </section>  
+    <section id="animation">
+    <div id="queue-container">
+    <div id="queue-display"></div>
+    </div>
+</section>
+    <br>
+    <section id="operation">
+    <input type="text" id="input-value" placeholder="Enter input value" style="padding:10px 20px;border-radius:20px;text-align: center;"><br><br><br>
+    <button onclick="enqueue()" style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: #4d84e2;color:white;border:1px solid white">Enqueue</button>
+    &nbsp;&nbsp;&nbsp;<button onclick="dequeue()" style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: #4d84e2 ;color:white;border:1px solid white">Dequeue</button>
+    &nbsp;&nbsp;&nbsp;<button onclick="IsEmpty()" style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: #4d84e2 ;color:white;border:1px solid white">IsEmpty</button>
+    &nbsp;&nbsp;&nbsp;<button onclick="clearQueue()" style="font-size:large;border-radius: 10px;padding:10px 20px;  background-color: #4d84e2 ;color:white;border:1px solid white">Clear Queue</button>
+</section>
+
+  
+    <script>
+        // Initialize an empty queue
+let queue = [];
+const max_size=5;
+alert("THE MAXIMUM SIZE OF QUEUE IS FIVE.")
+// Function to enqueue an element
+function enqueue() 
+{
+    const inputValue = document.getElementById('input-value').value;
+    if(queue.length===max_size)
+    {
+        alert("Overflow");
+    }
+    else if (inputValue !=='') 
+    {
+        queue.push(inputValue);
+        updateQueueDisplay();
+    }
+    document.getElementById('input-value').value = '';
+}
+// Function to dequeue an element
+function dequeue() 
+{
+    if (queue.length > 0) 
+    {
+        queue.shift();
+        updateQueueDisplay();
+    }
+    else
+    {
+        alert(" UNDERFLOW");
+    }
+}
+// Function to clear the queue
+function clearQueue() 
+{
+    if(queue.length>0)
+    {
+        queue = [];
+        updateQueueDisplay();
+    }
+    else
+    {
+        alert("Queue is already empty.");
+    }
+}
+// Function to update the queue display in HTML
+function updateQueueDisplay() 
+{
+    const queueDisplay = document.getElementById('queue-display');
+    queueDisplay.innerHTML = '';
+
+    for (let i = 0; i < queue.length; i++) 
+    {
+        const queueItem = document.createElement('div');
+        queueItem.classList.add('queue-item');
+        if (i === 0) 
+        {
+            queueItem.classList.add('queue-front');
+        }
+        if (i === queue.length - 1)
+        {
+            queueItem.classList.add('queue-rear');
+        }
+        queueItem.innerText = queue[i];
+        queueDisplay.appendChild(queueItem);
+    }
+}
+function IsEmpty() 
+{
+    const empty = queue.length;
+    if(empty==0||empty==-1)
+    {
+        alert("Queue is empty");
+    }
+    else
+    {
+        alert("Queue is not empty");
+    }
+}
+    </script>
+</body>
+</html>
