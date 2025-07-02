@@ -23,3 +23,7 @@ It includes a **visual animation** of the queue using colored blocks for front, 
 - Simple UI for entering and controlling queue operations
 
 ---
+
+## 📄 License
+
+This project is licensed under the MIT License – see the LICENSE file for details.
